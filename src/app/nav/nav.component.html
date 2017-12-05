@@ -1,0 +1,14 @@
+<mat-toolbar class="mat-elevation-z6" color="primary">
+    <span routerLink="/dashboard">Dashboard</span>
+
+    <span class="example-fill-remaining-space"></span>
+    <mat-menu #appMenu="matMenu">
+        <button mat-menu-item> 
+            <mat-icon>exit_to_app</mat-icon><span routerLink="/login">Logout</span> </button>
+    </mat-menu>
+    
+    <button class="position-icon-more" mat-icon-button [matMenuTriggerFor]="appMenu">
+        <mat-icon >more_vert</mat-icon>
+    </button>
+  
+</mat-toolbar>

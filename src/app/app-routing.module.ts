@@ -3,7 +3,6 @@ import {RouterModule, Routes} from '@angular/router';
 
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {LoginComponent} from './login/login.component';
-import {UserComponent} from './user/user.component';
 
 const routes : Routes = [
     {
@@ -13,9 +12,6 @@ const routes : Routes = [
     }, {
         path: 'dashboard',
         component: DashboardComponent
-    }, {
-        path: 'user/:id',
-        component: UserComponent
     }, {
         path: 'login',
         component: LoginComponent
