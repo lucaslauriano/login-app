@@ -1,7 +1,4 @@
-.field-column {
-   display: flex;
-  flex-direction: column;
-}
+
 
 .login {
   width: 500px;
@@ -10,6 +7,10 @@
 
 .login-bg{
 
-  background: url('../../assets/bg2.jpg');
+  background: url('../../assets/bg3.jpg');
   background-size: 100%;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  display: block;
 }

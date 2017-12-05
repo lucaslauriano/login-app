@@ -4,3 +4,22 @@
 .content{
     margin: 50px;
 }
+
+.field-column {
+   display: flex;
+   flex-direction: column;
+}
+
+body, html {
+    min-height: 100%;
+    height: 100%;
+    line-height: normal;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    display: block;
+}
+
+app-login {
+    height: 100%;
+    width: 100%;
+}

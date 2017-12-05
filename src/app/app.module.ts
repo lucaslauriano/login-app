@@ -8,7 +8,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavComponent } from './Nav/Nav.component';
 import { LoginComponent } from './login/login.component';
 import { UsersComponent } from './users/users.component';
-import { UserDetailComponent } from './user-detail/user-detail.component';
 import { UserNewComponent } from './user-new/user-new.component';
 import { FlexLayoutModule } from "@angular/flex-layout";
 
@@ -22,10 +21,10 @@ import {
         MatInputModule,
         MatListModule,
         MatFormFieldModule,
-        MatGridListModule
+        MatGridListModule,
+        MatCheckboxModule
   }
 from '@angular/material';
-
 
 @NgModule({
   declarations: [
@@ -33,7 +32,6 @@ from '@angular/material';
     DashboardComponent,
     NavComponent,
     LoginComponent,
-    UserDetailComponent,
     UserNewComponent,
     UsersComponent
   ],
@@ -50,7 +48,8 @@ from '@angular/material';
     MatInputModule,
     MatListModule,
     MatButtonModule,
-    MatGridListModule
+    MatGridListModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

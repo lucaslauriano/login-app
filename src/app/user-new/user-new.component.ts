@@ -7,6 +7,9 @@ import {Component, OnInit} from '@angular/core';
     
 export class UserNewComponent implements OnInit {
 
+    hideSenha = true;
+    hideConfirmaSenha = true;
+
     constructor() {}
 
     ngOnInit() {
