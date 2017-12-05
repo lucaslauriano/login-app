@@ -1,0 +1,15 @@
+.field-column {
+   display: flex;
+  flex-direction: column;
+}
+
+.login {
+  width: 500px;
+  top: 200px;;
+}
+
+.login-bg{
+
+  background: url('../../assets/bg2.jpg');
+  background-size: 100%;
+}

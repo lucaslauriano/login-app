@@ -1,1 +1,24 @@
-<span>LOGIN</span>
+<div fxFlex fxFlex="grow" class="login-bg">
+    <div  class="content" fxLayoutAlign="center">
+        <mat-card  class="login mat-elevation-z6">
+            <mat-card-title fxLayoutAlign="center">LOGIN</mat-card-title>
+            <mat-card-content>
+                <div  class="field-column  content">
+                    
+                    <mat-form-field fxFlex>
+                        <input matInput placeholder="Usuário" [type]="hide ? 'senha' : 'text'">
+                    </mat-form-field>
+                    
+                    <mat-form-field fxFlex>
+                        <input matInput placeholder="Senha" [type]="hide ? 'password' : 'text'">
+                        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                    </mat-form-field>
+                    
+                    <div fxLayoutAlign="center" >
+                        <button mat-raised-button color="primary">ENTRAR</button>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

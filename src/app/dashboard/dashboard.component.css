@@ -11,6 +11,8 @@
     display: block;
 }
 
-.content{
-    margin: 50px;
+.fab-add{
+    right: 60px;
+    bottom: 40px;
+    position: absolute ;
 }
