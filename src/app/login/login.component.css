@@ -1,16 +1,59 @@
 
 
 .login {
-  width: 500px;
+  width: 400px;
   top: 200px;;
 }
 
 .login-bg{
 
-  background: url('../../assets/bg3.jpg');
-  background-size: 100%;
+  background: url('../../assets/bg6.jpg');
   background-size: cover;
   height: 100%;
   width: 100%;
   display: block;
 }
+
+.divider {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 24px auto;
+    position: relative;
+    overflow: hidden;
+    width: 100px;
+    color: rgba(0,0,0,.54);
+
+}
+.or-text {
+    display: inline-flex;
+    position: relative;
+    font-weight: 700;
+    color: rgba(0,0,0,.54);
+}
+::before {
+  right: 100%;
+      box-sizing: border-box;
+}
+
+::after{
+  left: 100%;
+  box-sizing: border-box;
+}
+
+.or-text::before {
+    content: "";
+    display: block;
+    width: 25px;
+    top: 10px;
+    border-top: 1px solid rgba(0,0,0,.12);
+  }
+
+.or-text::after {
+    content: "";
+    display: block;
+    width: 25px;
+    top: 10px;
+    border-top: 1px solid rgba(0,0,0,.12);
+  }
+
+

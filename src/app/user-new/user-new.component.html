@@ -1,32 +1,63 @@
 <div class="content">
     <mat-card>
+        
         <mat-card-title> Novo Usuário</mat-card-title>
         <mat-card-content>
-            <div class="field-column  content">
-            
-                <mat-form-field fxFlex>
-                    <input matInput placeholder="Usuário">
-                </mat-form-field>
-            
-                <mat-form-field fxFlex>
-                    <input matInput placeholder="Senha" [type]="hide ? 'password' : 'text'">
-                    <mat-icon matSuffix (click)="hideSenha = !hideSenha">{{hideSenha ? 'visibility' : 'visibility_off'}}</mat-icon>
-                </mat-form-field>
-            
-                <mat-form-field fxFlex>
-                    <input matInput placeholder="Confirma Senha" [type]="hideConfirmaSenha ? 'password' : 'text'">
-                    <mat-icon matSuffix (click)="hideConfirmaSenha = !hideConfirmaSenha">{{hideConfirmaSenha ? 'visibility' : 'visibility_off'}}</mat-icon>
-                </mat-form-field>
-                
-                <mat-checkbox>Administrador!</mat-checkbox>
+            <form name="form" (ngSubmit)="newUserForm.form.valid && save()" #newUserForm="ngForm" novalidate>
+                <div class="field-column  content">
+                     <mat-form-field fxFlex [ngClass]="{ 'has-error': newUserForm.submitted && !fullname.valid }">
+                        <input matInput
+                               placeholder="Nome Completo" 
+                               type="text"
+                               name="fullname" 
+                             [(ngModel)]="user.fullname" 
+                              #fullname="ngModel" 
+                               required>
+                    </mat-form-field>
+                    <div *ngIf="newUserForm.submitted && !fullname.valid" class="message">Nome Completo é obrigatório</div>
 
-                
-                <div fxLayoutAlign="center">
-                    <button mat-raised-button color="primary">
-                        SALVAR
-                    </button>
+                    <mat-form-field fxFlex [ngClass]="{ 'has-error': newUserForm.submitted && !email.valid }">
+                        <input matInput 
+                               name="email"
+                               placeholder="E-mail" 
+                             [(ngModel)]="user.email"
+                              #email="ngModel"
+                              type="email"
+                              required>
+                             
+                    </mat-form-field>
+                    <div *ngIf="newUserForm.submitted && !email.valid" class="message">Email obrigatório</div>
+
+                    <mat-form-field fxFlex [ngClass]="{ 'has-error': newUserForm.submitted && !username.valid }">
+                        <input matInput 
+                               name="username"
+                               placeholder="Nome de Usuário" 
+                             [(ngModel)]="user.username"
+                              #username="ngModel"
+                               type="text"
+                            required>
+                    </mat-form-field>
+                    <div *ngIf="newUserForm.submitted && !username.valid" class="message">Nome de Usuário é obrigatório</div>
+
+                    <mat-form-field fxFlex [ngClass]="{ 'has-error': newUserForm.submitted && !password.valid }">
+                        <input matInput 
+                               placeholder="Senha" 
+                               name="password"
+                               [type]="hide ? 'password' : 'text'"
+                               [(ngModel)]="user.password" 
+                               #password="ngModel"
+                               required>
+                        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                    </mat-form-field>
+                    <div *ngIf="newUserForm.submitted && !password.valid" class="message">Senha é obrigatória</div>
+                    
+                    <mat-checkbox name="iSAdmin" #iSAdmin="ngModel" [(ngModel)]="user.iSAdmin">Administrador!</mat-checkbox>
+                    
+                    <mat-divider></mat-divider>
+
+                    <button fxFlexAlign="center" [disabled]="loading" class="btn-large" type="submit" mat-raised-button color="primary">SALVAR</button>
                 </div>
-            </div>
+            </form>
         </mat-card-content>
     </mat-card>
 

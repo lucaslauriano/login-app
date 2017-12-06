@@ -3,21 +3,50 @@
         <mat-card  class="login mat-elevation-z6">
             <mat-card-title fxLayoutAlign="center">LOGIN</mat-card-title>
             <mat-card-content>
-                <div  class="field-column  content">
-                    
-                    <mat-form-field fxFlex>
-                        <input matInput placeholder="Usuário" [type]="hide ? 'senha' : 'text'">
-                    </mat-form-field>
-                    
-                    <mat-form-field fxFlex>
-                        <input matInput placeholder="Senha" [type]="hide ? 'password' : 'text'">
-                        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-                    </mat-form-field>
-                    
-                    <div fxLayoutAlign="center" >
-                        <button mat-raised-button color="primary">ENTRAR</button>
+                <form name="form" 
+                      (ngSubmit)="loginForm.form.valid && login()" 
+                      #loginForm="ngForm" 
+                      novalidate>
+                    <div  class="field-column  content">
+                        
+                        <mat-form-field fxFlex  [ngClass]="{ 'has-error': loginForm.submitted && !username.valid }">
+                            <input matInput 
+                                   name="username"
+                                   placeholder="Usuário" 
+                                   [(ngModel)]="user.username" 
+                                   #username="ngModel" 
+                                   required
+                                   type="text">
+                        </mat-form-field>
+                        <div *ngIf="loginForm.submitted && !username.valid" class="message">Nome de  Usuário é obrigatório</div>
+                        
+                        <mat-form-field fxFlex [ngClass]="{ 'has-error': loginForm.submitted && !password.valid }">
+                            <input matInput 
+                                   placeholder="Senha"
+                                   name="password"
+                                   [type]="hide ? 'password' : 'text'"
+                                   [(ngModel)]="user.password" 
+                                   #password="ngModel" 
+                                   required>
+                            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                        </mat-form-field>
+                        <div *ngIf="loginForm.submitted && !password.valid" class="message">Senha é obrigatória</div>
+                        
+                        <div fxLayoutAlign="center" >
+                            <button class="btn-large" 
+                                    [disabled]="loading"
+                                    mat-raised-button color="primary">ENTRAR</button>
+                        </div>
+
+                        <div fxLayoutAlign="center">
+                            <button routerLink="/register"
+                                    class="btn-large"
+                                    mat-button
+                                    type="submit"
+                                    color="primary">Registrar</button>
+                        </div>
                     </div>
-                </div>
+                </form>
             </mat-card-content>
         </mat-card>
     </div>

@@ -1,16 +1,25 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
-import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
+/* Persistencia LocalStorage */
+import {PersistenceProvider} from './common/persistence/persistence.methods';
+import {MockBackend, MockConnection} from '@angular/http/testing';
+import {BaseRequestOptions} from '@angular/http';
 
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { NavComponent } from './Nav/Nav.component';
-import { LoginComponent } from './login/login.component';
-import { UsersComponent } from './users/users.component';
-import { UserNewComponent } from './user-new/user-new.component';
+/* App */
+import {AppComponent} from './app.component';
+import {AppRoutingModule} from './app-routing.module';
+
+/* Service */
+import {MessageService} from './common/message/message.service';
+import {AuthGuard} from './common/auth/auth.guard';
+import {AuthService} from './common/auth/auth.service';
+import {UserService} from './user/user.service';
+
+
 import { FlexLayoutModule } from "@angular/flex-layout";
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
         MatToolbarModule, 
@@ -26,18 +35,37 @@ import {
   }
 from '@angular/material';
 
+import { MessageComponent } from './common/message/message.component';
+import { NavComponent } from './Nav/Nav.component';
+
+import { HomeComponent } from './home/home.component';
+import { UsersComponent } from './users/users.component';
+import { UserNewComponent } from './user-new/user-new.component';
+
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import {UserPipe} from './user/user.pipe';
+
+
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
     NavComponent,
+    MessageComponent,
     LoginComponent,
+    RegisterComponent,
+    HomeComponent,
     UserNewComponent,
-    UsersComponent
+    UsersComponent,
+    UserPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    HttpModule,
+    
+    /* Material 2 */
     BrowserAnimationsModule,
     MatToolbarModule,
     FlexLayoutModule,
@@ -51,7 +79,15 @@ from '@angular/material';
     MatGridListModule,
     MatCheckboxModule
   ],
-  providers: [],
+  providers : [
+    PersistenceProvider,
+    MockBackend, 
+    BaseRequestOptions,
+    MessageService,
+    AuthService,
+    UserService
+    
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

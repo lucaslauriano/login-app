@@ -2,7 +2,7 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 .content{
-    margin: 50px;
+    margin: 30px;
 }
 
 .field-column {
@@ -22,4 +22,20 @@ body, html {
 app-login {
     height: 100%;
     width: 100%;
+}
+app-register {
+    height: 100%;
+    width: 100%;
+}
+
+.btn-large {
+    width: 300px;
+    margin: 10px !important;
+}
+
+.message {
+    position: relative;
+    margin-top: -14px;
+    color: red;
+    font-size: 12px;
 }

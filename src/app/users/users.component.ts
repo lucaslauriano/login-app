@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
+import {UserPipe} from '../user/user.pipe';
 
 @Component(
     {selector: 'app-users', 
@@ -6,18 +7,8 @@ import {Component, OnInit} from '@angular/core';
     styleUrls: ['./users.component.css']})
     
 export class UsersComponent implements OnInit {
-    users = [
-        {
-            name: 'Luke Skywalker',
-            isSuperUser: true
-        }, {
-            name: 'Darth Vader',
-            isSuperUser: false
-        }, {
-            name: 'Obi-Wan',
-            isSuperUser: false
-        }
-    ];
+    @Input() users : Array <any>;
+    
     constructor() {}
 
     ngOnInit() {

@@ -1,0 +1,13 @@
+.register-bg{
+  background: url('../../assets/bg1.jpg');
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  display: block;
+}
+
+
+.register {
+  width: 400px;
+  top: 150px;;
+}

@@ -1,0 +1,88 @@
+<div fxFlex fxFlex="grow" class="register-bg">
+    <div class="content" fxLayoutAlign="center">
+        <mat-card class="register mat-elevation-z6">
+        <mat-card-title fxLayoutAlign="center">REGISTRAR</mat-card-title>
+        <mat-card-content>
+            <form name="form" 
+                  (ngSubmit)="registerForm.form.valid && register()" 
+                  #registerForm="ngForm" 
+                  novalidate>
+                <div class="field-column  content">
+
+                    <mat-form-field fxFlex [ngClass]="{ 'has-error': registerForm.submitted && !fullname.valid }">
+                        <input matInput
+                               placeholder="Nome Completo" 
+                               type="text"
+                               name="fullname" 
+                             [(ngModel)]="user.fullname" 
+                              #fullname="ngModel" 
+                               required>
+                    </mat-form-field>
+                    <div *ngIf="registerForm.submitted && !fullname.valid" class="message">Nome Completo é obrigatório</div>
+
+                    <mat-form-field fxFlex [ngClass]="{ 'has-error': registerForm.submitted && !email.valid }">
+                        <input matInput 
+                               name="email"
+                               placeholder="E-mail" 
+                             [(ngModel)]="user.email"
+                              #email="ngModel"
+                              type="email"
+                              required>
+                             
+                    </mat-form-field>
+                    <div *ngIf="registerForm.submitted && !email.valid" class="message">Email obrigatório</div>
+
+                    <mat-form-field fxFlex [ngClass]="{ 'has-error': registerForm.submitted && !username.valid }">
+                        <input matInput 
+                               name="username"
+                               placeholder="Nome de Usuário" 
+                             [(ngModel)]="user.username"
+                              #username="ngModel"
+                               type="text"
+                            required>
+                    </mat-form-field>
+                    <div *ngIf="registerForm.submitted && !username.valid" class="message">Nome de Usuário é obrigatório</div>
+
+                    <mat-form-field fxFlex [ngClass]="{ 'has-error': registerForm.submitted && !password.valid }">
+                        <input matInput 
+                               placeholder="Senha" 
+                               name="password"
+                               [type]="hide ? 'password' : 'text'"
+                               [(ngModel)]="user.password" 
+                               #password="ngModel"
+                               required>
+                        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                    </mat-form-field>
+                    <div *ngIf="registerForm.submitted && !password.valid" class="message">Senha é obrigatória</div>
+<!-- 
+                    <mat-form-field fxFlex [ngClass]="{ 'has-error': registerForm.submitted && !confirm.valid }">
+                        <input matInput 
+                               name="confirm"
+                               placeholder="Conirma Senha" 
+                               [type]="hide1 ? 'password' : 'text'"
+                            
+                               required>
+                        <mat-icon matSuffix (click)="hide1 = !hide1">{{hide1 ? 'visibility' : 'visibility_off'}}</mat-icon>
+                    </mat-form-field>
+                    <div *ngIf="registerForm.submitted && !confirm.valid" class="message">Confirmar Senha é obrigatório</div> -->
+
+                    <div fxLayoutAlign="center">
+                        <button [disabled]="loading"
+                                class="btn-large" 
+                                mat-raised-button 
+                                color="primary">REGISTRAR</button>
+                    </div>
+
+                    <div fxLayoutAlign="center">
+                        <button [routerLink]="['/login']"
+                                class="btn-large"
+                                type="submit"
+                                mat-button 
+                                color="primary">Cancelar</button>
+                    </div>
+                </div>
+            </form>
+        </mat-card-content>
+        </mat-card>
+    </div>
+</div>
