@@ -29,8 +29,9 @@ app-register {
 }
 
 .btn-large {
-    width: 300px;
-    margin: 10px !important;
+    width: 100%;
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
 }
 
 .message {
@@ -39,3 +40,4 @@ app-register {
     color: red;
     font-size: 12px;
 }
+

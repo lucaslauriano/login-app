@@ -5,7 +5,7 @@
             <app-users [users]="users"></app-users>
         </mat-card-content>
     </mat-card>
-    <button [routerLink]="['/new-user']" 
+    <button *ngIf="isSuperUser" [routerLink]="['/new-user']" 
             class="fab-add"
             mat-fab color="primary">
             <mat-icon>add</mat-icon>

@@ -9,10 +9,14 @@
             </form>
             <mat-list-item *ngFor="let user of users | UserPipe: queryString" >
                 <mat-icon mat-list-icon>perm_identity</mat-icon>
-                <h4 mat-line>{{user.fullname}} | <small>{{user.email}}</small></h4>
+                <h4 mat-line>{{user.fullname}} | <!-- <small>{{user.email}}</small> --></h4>
                 <p mat-line *ngIf="user.isSuperUser">Admin</p>
                 <p mat-line *ngIf="!user.isSuperUser">Usuário Comum</p>
-                <a (click)="deleteUser(user.id)">Delete</a>
+                <button *ngIf="isSuperUser"mat-icon-button 
+                        color="accent"
+                        (click)="[delete(user.id)]" type="">
+                    <mat-icon mat-list-icon>delete</mat-icon>
+                </button>
             </mat-list-item>
             <mat-divider></mat-divider>
         </mat-list>

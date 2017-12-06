@@ -17,9 +17,11 @@ export class RegisterComponent {
   loading = false;
   email = new FormControl('', [Validators.required, Validators.email]);
 
-constructor(private router : Router, 
-            private userService : UserService, 
-            private messageService : MessageService) {}
+  constructor(private router : Router, 
+              private userService : UserService, 
+              private messageService : MessageService) {
+        this.user.isSuperUser = false;
+  }
 
   register() {
     console.log('registrando');

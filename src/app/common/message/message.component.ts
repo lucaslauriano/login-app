@@ -14,12 +14,9 @@ message : any;
 constructor(private messageService : MessageService) {}
 
 ngOnInit() {
-  this
-    .messageService
-    .getMessage()
-    .subscribe(message => {
+  this.messageService.getMessage().subscribe(message => {
       this.message = message;
-    });
+  });
 }
 
 }

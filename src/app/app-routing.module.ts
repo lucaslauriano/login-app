@@ -11,10 +11,11 @@ import { UsersComponent } from './users/users.component';
 const routes : Routes = [
    {
         path: 'home',
-        component: HomeComponent,
+        canActivate: [AuthGuard],
+        component: HomeComponent 
     }, {
         path: 'new-user',
-        component: UserNewComponent
+        component: UserNewComponent 
     }, {
         path: 'login',
         component: LoginComponent
@@ -23,7 +24,7 @@ const routes : Routes = [
         component: RegisterComponent
     },{
         path: '**',
-        redirectTo: 'home'
+        component: HomeComponent
     }
 ];
 

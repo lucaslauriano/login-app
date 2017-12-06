@@ -1,6 +1,19 @@
 <mat-toolbar *ngIf="showMenu" class="mat-elevation-z6" color="primary">
-    <span routerLink="/dashboard">LoginApp</span>
+    <a class="docs-button mat-button logo-sidenav" 
+       mat-button="" 
+       routerlink="/home" 
+       tabindex="0" 
+       aria-disabled="false" 
+       href="/">
+        <span class="mat-button-wrapper">
+            <img App="angular" class="logo-sidenav" src="../../assets/fuse.svg">
+            <span>Login App</span>
+        </span>
+        <div class="mat-button-ripple mat-ripple" matripple=""></div>
+        <div class="mat-button-focus-overlay"></div>
+    </a>
     <span class="example-fill-remaining-space"></span>
+    <div mat-card-avatar class="example-header-image"></div>
     <mat-menu #appMenu="matMenu">
         <button  [routerLink]="['/login']"
                  mat-menu-item> 
@@ -14,3 +27,4 @@
     </button>
   
 </mat-toolbar>
+

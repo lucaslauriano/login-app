@@ -29,6 +29,7 @@ import {
         MatButtonModule,
         MatInputModule,
         MatListModule,
+        MatSidenavModule,
         MatFormFieldModule,
         MatGridListModule,
         MatCheckboxModule
@@ -44,8 +45,8 @@ import { UserNewComponent } from './user-new/user-new.component';
 
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import {UserPipe} from './user/user.pipe';
-
+import { UserPipe } from './user/user.pipe';
+import { EqualValidator } from './common/validator/equal-validator.directive';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import {UserPipe} from './user/user.pipe';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
+    EqualValidator,
     UserNewComponent,
     UsersComponent,
     UserPipe
@@ -71,6 +73,7 @@ import {UserPipe} from './user/user.pipe';
     FlexLayoutModule,
     MatMenuModule,
     MatFormFieldModule,
+    MatSidenavModule,
     MatCardModule,
     MatIconModule,
     MatInputModule,

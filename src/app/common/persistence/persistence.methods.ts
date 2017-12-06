@@ -1,3 +1,4 @@
+import { MockBackend, MockConnection } from '@angular/http/testing';
 import {
     Http,
     BaseRequestOptions,
@@ -8,7 +9,6 @@ import {
     RequestOptions
 } from '@angular/http';
 
-import { MockBackend, MockConnection } from '@angular/http/testing';
 
 export function persistenceMethods(backend : MockBackend, options : BaseRequestOptions, realBackend : XHRBackend) {
    
@@ -17,34 +17,28 @@ export function persistenceMethods(backend : MockBackend, options : BaseRequestO
     backend
         .connections
         .subscribe((connection : MockConnection) => {
-            // wrap in timeout to simulate server api call
             setTimeout(() => {
 
-                // authenticate
                 if (connection.request.url.endsWith('/api/authenticate') && connection.request.method === RequestMethod.Post) {
-                    // get parameters from post request
                     let params = JSON.parse(connection.request.getBody());
 
-                    // find if any user matches login credentials
                     let filteredUsers = users.filter(user => {
                         return user.username === params.username && user.password === params.password;
                     });
 
                     if (filteredUsers.length) {
-                        // if login details are valid return 200 OK with user details and fake jwt token
                         let user = filteredUsers[0];
                         connection.mockRespond(new Response(new ResponseOptions({
                             status: 200,
                             body: {
                                 id: user.id,
+                                fullname: user.fullname,
                                 username: user.username,
-                                firstName: user.firstName,
-                                lastName: user.lastName,
+                                isSuperUser: user.isSuperUser,
                                 token: 'fake-jwt-token'
                             }
                         })));
                     } else {
-                        // else return 400 bad request
                         connection.mockError(new Error('Username or password is incorrect'));
                     }
 
@@ -67,10 +61,7 @@ export function persistenceMethods(backend : MockBackend, options : BaseRequestO
 
                 // get user by id
                 if (connection.request.url.match(/\/api\/users\/\d+$/) && connection.request.method === RequestMethod.Get) {
-                    // check for fake auth token in header and return user if valid, this security
-                    // is implemented server side in a real application
                     if (connection.request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
-                        // find user by id in users array
                         let urlParts = connection
                             .request
                             .url
@@ -83,10 +74,8 @@ export function persistenceMethods(backend : MockBackend, options : BaseRequestO
                             ? matchedUsers[0]
                             : null;
 
-                        // respond 200 OK with user
                         connection.mockRespond(new Response(new ResponseOptions({status: 200, body: user})));
                     } else {
-                        // return 401 not authorised if token is null or invalid
                         connection.mockRespond(new Response(new ResponseOptions({status: 401})));
                     }
 
@@ -95,10 +84,8 @@ export function persistenceMethods(backend : MockBackend, options : BaseRequestO
 
                 // create user
                 if (connection.request.url.endsWith('/api/users') && connection.request.method === RequestMethod.Post) {
-                    // get new user object from post body
                     let newUser = JSON.parse(connection.request.getBody());
 
-                    // validation
                     let duplicateUser = users
                         .filter(user => {
                         return user.username === newUser.username;
@@ -113,7 +100,6 @@ export function persistenceMethods(backend : MockBackend, options : BaseRequestO
                     users.push(newUser);
                     localStorage.setItem('users', JSON.stringify(users));
 
-                    // respond 200 OK
                     connection.mockRespond(new Response(new ResponseOptions({status: 200})));
 
                     return;
@@ -121,10 +107,7 @@ export function persistenceMethods(backend : MockBackend, options : BaseRequestO
 
                 // delete user
                 if (connection.request.url.match(/\/api\/users\/\d+$/) && connection.request.method === RequestMethod.Delete) {
-                    // check for fake auth token in header and return user if valid, this security
-                    // is implemented server side in a real application
                     if (connection.request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
-                        // find user by id in users array
                         let urlParts = connection
                             .request
                             .url
@@ -150,7 +133,6 @@ export function persistenceMethods(backend : MockBackend, options : BaseRequestO
                     return;
                 }
 
-                // pass through any requests not handled above
                 let realHttp = new Http(realBackend, options);
                 let requestOptions = new RequestOptions({
                     method: connection.request.method,

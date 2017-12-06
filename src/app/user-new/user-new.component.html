@@ -51,11 +51,18 @@
                     </mat-form-field>
                     <div *ngIf="newUserForm.submitted && !password.valid" class="message">Senha é obrigatória</div>
                     
-                    <mat-checkbox name="iSAdmin" #iSAdmin="ngModel" [(ngModel)]="user.iSAdmin">Administrador!</mat-checkbox>
+                    <mat-checkbox name="isSuperUser" 
+                                  #isSuperUser="ngModel" 
+                                  [(indeterminate)]="user.isSuperUser"
+                                  [(ngModel)]="user.isSuperUser">Administrador!</mat-checkbox>
                     
                     <mat-divider></mat-divider>
-
-                    <button fxFlexAlign="center" [disabled]="loading" class="btn-large" type="submit" mat-raised-button color="primary">SALVAR</button>
+                    {{user.isSuperUser}}
+                    <button fxFlexAlign="center" 
+                            [disabled]="loading" 
+                            class="btn-large"
+                            type="submit" 
+                            mat-raised-button color="primary">SALVAR</button>
                 </div>
             </form>
         </mat-card-content>

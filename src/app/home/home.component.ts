@@ -12,10 +12,16 @@ import {UserService} from '../user/user.service';
 export class HomeComponent implements OnInit {
     
     currentUser : User;
+    isSuperUser = false;
     users : User[] = [];
 
     constructor(private userService : UserService) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        console.log(this.currentUser);
+        
+        this.isSuperUser = this.currentUser.isSuperUser;
+        console.log('this.isSuperUser', this.isSuperUser);
+
     }
 
     ngOnInit() {

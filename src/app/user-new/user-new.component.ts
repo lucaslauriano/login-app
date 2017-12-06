@@ -12,14 +12,18 @@ import {FormControl, Validators} from '@angular/forms';
     
 export class UserNewComponent  {
     user : any = {};
+    
     loading = false;
     email = new FormControl('', [Validators.required, Validators.email]);
     hideSenha = true;
+    
     hideConfirmaSenha = true;
 
    constructor(private router : Router, 
             private userService : UserService, 
-            private messageService : MessageService) {}
+            private messageService : MessageService) {
+        this.user.isSuperUser = false;
+    }
 
 
     save() {

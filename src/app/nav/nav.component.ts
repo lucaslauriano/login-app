@@ -9,7 +9,10 @@ import {Component, OnInit, Input} from '@angular/core';
 )
 export class NavComponent implements OnInit {
 
-    @Input() showMenu : boolean ;
+    @Input() showMenu : boolean = false;
+    events = [];
+
+    shouldRun = [/(^|\.)plnkr\.co$/, /(^|\.)stackblitz\.io$/].some(h => h.test(window.location.host));
     
     constructor() {}
 
