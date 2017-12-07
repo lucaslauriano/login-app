@@ -1,12 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
+
 import { MessageService } from '../common/message/message.service';
 import { AuthService } from '../common/auth/auth.service';
 
-
 @Component(
     {moduleId: module.id.toString(), 
-     selector: 'app-login',
      templateUrl: './login.component.html', 
      styleUrls: ['./login.component.css']
     }
@@ -21,23 +20,17 @@ export class LoginComponent {
 constructor(private route : ActivatedRoute, 
             private router : Router, 
             private authService : AuthService,
-            private messageService : MessageService,
-           ) {
-
-    }
+            private messageService : MessageService) {}
 
     ngOnInit() {
         this.authService.logout();
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '';
-        console.log(this.route.snapshot.queryParams['returnUrl'])
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
 
     login() {
-        console.log('acessando');
         this.loading = true;
         this.authService.login(this.user.username, this.user.password).subscribe(data => {
             this.router.navigate([this.returnUrl]);
-            console.log([this.returnUrl]);
         }, error => {
             this.messageService.error(error);
             this.loading = false;

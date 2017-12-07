@@ -1,5 +1,5 @@
-import {ModuleWithProviders, NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './common/auth/auth.guard';
 import { RoleGuard } from './common/auth/role.guard';
 
@@ -10,25 +10,22 @@ import { LoginComponent } from './login/login.component';
 import { UsersComponent } from './users/users.component';
 
 const APP_ROUTES : Routes = [
-   {
-        path: 'home',
-        /* canActivate: [AuthGuard], */
-        component: HomeComponent 
+    { 
+        path: '', 
+        redirectTo: 'home', 
+        pathMatch: 'full'
     }, {
         path: 'new-user',
-        /* canActivate: [RoleGuard], */
-        component: UserNewComponent 
+        component: UserNewComponent
     }, {
         path: 'login',
         component: LoginComponent
     }, {
         path: 'register',
         component: RegisterComponent
-    },{
-        path: '**',
-       component: LoginComponent
-    }
+    }, {path: '**', component: HomeComponent}
 ];
+
 
 @NgModule({
     imports: [RouterModule.forRoot(APP_ROUTES)],

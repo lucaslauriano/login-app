@@ -2,7 +2,7 @@ import {Injectable, EventEmitter} from '@angular/core';
 import {Http, Headers, Response} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map'
-import {Router} from '@angular/router';
+
 @Injectable()
 export class AuthService {
   
@@ -10,7 +10,7 @@ export class AuthService {
 
   showMenuEmitter = new EventEmitter<boolean>();
   
-  constructor(private router : Router, private http : Http) {}
+  constructor(private http : Http) {}
 
   login(username : string, password : string) {
     return this
@@ -25,16 +25,14 @@ export class AuthService {
           this.showMenuEmitter.emit(true);
           
           localStorage.setItem('currentUser', JSON.stringify(user));
-           this.router.navigate(['/']);
+          
         } else {
             this.showMenuEmitter.emit(false);
         }
       });
   }
 
-    usuarioEstaAutenticado(){
-      return this.authenticatedUser;
-    }
+    
 
   logout() {
     localStorage.removeItem('currentUser');

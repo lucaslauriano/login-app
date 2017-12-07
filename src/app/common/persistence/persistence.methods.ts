@@ -47,12 +47,9 @@ export function persistenceMethods(backend : MockBackend, options : BaseRequestO
 
                 // get users
                 if (connection.request.url.endsWith('/api/users') && connection.request.method === RequestMethod.Get) {
-                    // check for fake auth token in header and return users if valid, this security
-                    // is implemented server side in a real application
                     if (connection.request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
                         connection.mockRespond(new Response(new ResponseOptions({status: 200, body: users})));
                     } else {
-                        // return 401 not authorised if token is null or invalid
                         connection.mockRespond(new Response(new ResponseOptions({status: 401})));
                     }
 
