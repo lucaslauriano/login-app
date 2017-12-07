@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { MessageService } from '../common/message/message.service';
-import { UserService } from '../user/user.service';
+import { UserService } from '../users/user/user.service';
 import { FormControl, Validators } from '@angular/forms';
 
 @Component({

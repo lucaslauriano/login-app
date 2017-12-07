@@ -27,6 +27,7 @@ export class AuthService {
           localStorage.setItem('currentUser', JSON.stringify(user));
           
         } else {
+            this.authenticatedUser = false;
             this.showMenuEmitter.emit(false);
         }
       });
@@ -36,6 +37,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('currentUser');
+    this.authenticatedUser = false;
     this.showMenuEmitter.emit(false);
   }
 }

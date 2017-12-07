@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 
-import {User} from '../user/user.model';
-import {UserService} from '../user/user.service';
+import {User} from '../users/user/user.model';
+import {UserService} from '../users/user/user.service';
+import {Router, ActivatedRoute} from '@angular/router';
+import {MessageService} from '../common/message/message.service';
 
 @Component(
     {   moduleId: module.id.toString(),
@@ -16,19 +18,22 @@ export class HomeComponent implements OnInit {
     users : User[] = [];
     private isSuperUser = false;
 
-    constructor(private userService : UserService) {
-        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    constructor(private userService : UserService,
+                private route : ActivatedRoute, 
+                private router : Router) {
 
+        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         this.isSuperUser = this.currentUser.isSuperUser; 
     }
 
     ngOnInit() {
         this.loadAllUsers();
+        console.log('A', this.route);
+        console.log('A', this.router);
     }
 
     deleteUser(id : number) {
-        this
-            .userService
+        this.userService
             .delete(id)
             .subscribe(() => {
                 this.loadAllUsers()

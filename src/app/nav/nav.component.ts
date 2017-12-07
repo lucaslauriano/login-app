@@ -10,6 +10,8 @@ import {Component, OnInit, Input} from '@angular/core';
 export class NavComponent implements OnInit {
 
     @Input() showMenu : boolean = false;
+    @Input() currentUser : {};
+    user: {};
     events = [];
 
     shouldRun = [/(^|\.)plnkr\.co$/, /(^|\.)stackblitz\.io$/].some(h => h.test(window.location.host));
@@ -17,6 +19,8 @@ export class NavComponent implements OnInit {
     constructor() {}
 
     ngOnInit() {
+        this.user = this.currentUser;
+          
     }
 
 }

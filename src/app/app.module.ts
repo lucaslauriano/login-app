@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 /* Persistencia LocalStorage */
-import {PersistenceProvider} from './common/persistence/persistence.methods';
+import {PersistenceProvider} from './common/persistence/persistence.component';
 import {MockBackend, MockConnection} from '@angular/http/testing';
 import {BaseRequestOptions} from '@angular/http';
 
@@ -16,8 +16,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {MessageService} from './common/message/message.service';
 import {AuthGuard} from './common/auth/auth.guard';
 import {AuthService} from './common/auth/auth.service';
-import {UserService} from './user/user.service';
-
+import {UserService} from './users/user/user.service';
 
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -42,11 +41,11 @@ import { NavComponent } from './Nav/Nav.component';
 
 import { HomeComponent } from './home/home.component';
 import { UsersComponent } from './users/users.component';
-import { UserNewComponent } from './user-new/user-new.component';
+import { UserNewComponent } from './users/user-new/user-new.component';
 
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { UserPipe } from './user/user.pipe';
+import { UserPipe } from './users/user/user.pipe';
 import { EqualValidator } from './common/validator/equal-validator.directive';
 
 @NgModule({

@@ -2,15 +2,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './common/auth/auth.guard';
 import { RoleGuard } from './common/auth/role.guard';
-import {HttpClientModule} from '@angular/common/http';
-import {HttpModule} from '@angular/http';
+import { HttpClientModule} from '@angular/common/http';
+import { HttpModule} from '@angular/http';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
-import { UserNewComponent } from './user-new/user-new.component';
+import { UserNewComponent } from './users/user-new/user-new.component';
 import { LoginComponent } from './login/login.component';
 import { UsersComponent } from './users/users.component';
 
-const APP_ROUTES : Routes = [
+const appRoutes : Routes = [
     { 
         path: '', 
         redirectTo: 'home', 
@@ -35,7 +35,7 @@ const APP_ROUTES : Routes = [
 
 
 @NgModule({
-    imports: [RouterModule.forRoot(APP_ROUTES)],
+    imports: [RouterModule.forRoot(appRoutes)],
     exports: [RouterModule]
 })
 export class AppRoutingModule {}

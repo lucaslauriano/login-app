@@ -26,11 +26,16 @@ constructor(private route : ActivatedRoute,
     ngOnInit() {
         this.authService.logout();
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/' || '' || 'home';
+
+        console.log('A',this.returnUrl);
+        console.log('A', this.route);
+        console.log('A', this.router);
     }
    
     login() {
         this.loading = true;
         this.authService.login(this.user.username, this.user.password).subscribe(data => {
+             this.messageService.success('Bem vindo');
             this.router.navigate([this.returnUrl]);
         }, error => {
             this.messageService.error(error);

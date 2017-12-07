@@ -1,7 +1,7 @@
 import {Component, OnInit, Input} from '@angular/core';
-import {UserPipe} from '../user/user.pipe';
-import {UserService} from '../user/user.service';
-import {User} from '../user/user.model';
+import {UserPipe} from './user/user.pipe';
+import {UserService} from './user/user.service';
+import {User} from './user/user.model';
 import {Router} from '@angular/router';
 import {MessageService} from '../common/message/message.service';
 
