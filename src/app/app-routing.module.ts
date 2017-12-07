@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {ModuleWithProviders, NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import { AuthGuard } from './common/auth/auth.guard';
 import { RoleGuard } from './common/auth/role.guard';
 
@@ -9,7 +9,7 @@ import { UserNewComponent } from './user-new/user-new.component';
 import { LoginComponent } from './login/login.component';
 import { UsersComponent } from './users/users.component';
 
-const routes : Routes = [
+const APP_ROUTES : Routes = [
    {
         path: 'home',
         /* canActivate: [AuthGuard], */
@@ -25,14 +25,13 @@ const routes : Routes = [
         path: 'register',
         component: RegisterComponent
     },{
-        path: '',
-        component: HomeComponent
+        path: '**',
+       component: LoginComponent
     }
 ];
 
-
 @NgModule({
-    imports: [RouterModule.forRoot(routes, {useHash: true})],
+    imports: [RouterModule.forRoot(APP_ROUTES)],
     exports: [RouterModule]
 })
 export class AppRoutingModule {}

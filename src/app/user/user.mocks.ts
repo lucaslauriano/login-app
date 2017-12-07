@@ -6,6 +6,7 @@ export const USER: User[] = [
     fullname: 'Administrador do Sistema',
     username:'admin',
     password: 'admin',
+    confirmPassword : 'admin',
     id: 1
     }
 ];
