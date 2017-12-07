@@ -24,6 +24,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
         MatToolbarModule, 
         MatMenuModule, 
+        MatSnackBarModule,
         MatIconModule,
         MatCardModule,
         MatButtonModule,
@@ -76,6 +77,7 @@ import { EqualValidator } from './common/validator/equal-validator.directive';
     MatSidenavModule,
     MatCardModule,
     MatIconModule,
+    MatSnackBarModule,
     MatInputModule,
     MatListModule,
     MatButtonModule,

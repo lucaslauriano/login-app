@@ -26,7 +26,7 @@ export class RegisterComponent {
 register() {
     this.loading = true;
     this.userService.create(this.user).subscribe(data => {
-        this.messageService .success('Registration successful', true);
+        this.messageService .success('Registro efetuado com Sucesso', true);
         this.router.navigate(['/login']);
     }, error => {
         this.messageService.error(error);

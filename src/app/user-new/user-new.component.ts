@@ -35,7 +35,7 @@ export class UserNewComponent  {
         this.userService.create(this.user).subscribe(data => {
         
         console.log('register', data);
-        this.messageService .success('Cadastro Efetuado com Successo', true);
+        this.messageService.success('Cadastro efetuado com Successo', true);
         this.router.navigate(['/home']);
 
         }, error => {

@@ -39,7 +39,7 @@ export function persistenceMethods(backend : MockBackend, options : BaseRequestO
                             }
                         })));
                     } else {
-                        connection.mockError(new Error('Username or password is incorrect'));
+                        connection.mockError(new Error('Nome de usuário ou senha estão incorretos'));
                     }
 
                     return;
@@ -89,7 +89,7 @@ export function persistenceMethods(backend : MockBackend, options : BaseRequestO
                     })
                         .length;
                     if (duplicateUser) {
-                        return connection.mockError(new Error('Username "' + newUser.username + '" is already taken'));
+                        return connection.mockError(new Error('Este nome de usuário: "' + newUser.username + '" ja foi cadastrado'));
                     }
 
                     // save new user
