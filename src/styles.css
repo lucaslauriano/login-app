@@ -41,3 +41,7 @@ app-register {
     font-size: 12px;
 }
 
+.mat-divider{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}

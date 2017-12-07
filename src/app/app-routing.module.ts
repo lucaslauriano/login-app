@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './common/auth/auth.guard';
+import { RoleGuard } from './common/auth/role.guard';
 
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
@@ -11,10 +12,11 @@ import { UsersComponent } from './users/users.component';
 const routes : Routes = [
    {
         path: 'home',
-        canActivate: [AuthGuard],
+        /* canActivate: [AuthGuard], */
         component: HomeComponent 
     }, {
         path: 'new-user',
+        /* canActivate: [RoleGuard], */
         component: UserNewComponent 
     }, {
         path: 'login',
@@ -23,14 +25,14 @@ const routes : Routes = [
         path: 'register',
         component: RegisterComponent
     },{
-        path: '**',
+        path: '',
         component: HomeComponent
     }
 ];
 
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
+    imports: [RouterModule.forRoot(routes, {useHash: true})],
     exports: [RouterModule]
 })
 export class AppRoutingModule {}

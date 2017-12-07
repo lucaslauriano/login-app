@@ -25,6 +25,9 @@ export class UserNewComponent  {
         this.user.isSuperUser = false;
     }
 
+    goHome() {
+        this.router.navigate(['/home']);
+    }   
 
     save() {
         console.log('registrando');

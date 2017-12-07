@@ -3,6 +3,7 @@ import {Router, ActivatedRoute} from '@angular/router';
 import { MessageService } from '../common/message/message.service';
 import { AuthService } from '../common/auth/auth.service';
 
+
 @Component(
     {moduleId: module.id.toString(), 
      selector: 'app-login',
@@ -11,7 +12,7 @@ import { AuthService } from '../common/auth/auth.service';
     }
 )
     
-export class LoginComponent implements OnInit {
+export class LoginComponent {
     hide = true;
     user : any = {};
     loading = false;
@@ -20,20 +21,23 @@ export class LoginComponent implements OnInit {
 constructor(private route : ActivatedRoute, 
             private router : Router, 
             private authService : AuthService,
-            private messageService : MessageService) {}
+            private messageService : MessageService,
+           ) {
+
+    }
 
     ngOnInit() {
         this.authService.logout();
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-        console.log('this.returnUrl', this.returnUrl)
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '';
+        console.log(this.route.snapshot.queryParams['returnUrl'])
     }
 
     login() {
         console.log('acessando');
         this.loading = true;
         this.authService.login(this.user.username, this.user.password).subscribe(data => {
-                console.log('login', data);
-                this.router.navigate([this.returnUrl]);
+            this.router.navigate([this.returnUrl]);
+            console.log([this.returnUrl]);
         }, error => {
             this.messageService.error(error);
             this.loading = false;

@@ -13,28 +13,24 @@ import { FormControl, Validators } from '@angular/forms';
 })
 
 export class RegisterComponent {
-  user : any = {};
-  loading = false;
-  email = new FormControl('', [Validators.required, Validators.email]);
+    user : any = {};
+    loading = false;
+    email = new FormControl('', [Validators.required, Validators.email]);
 
-  constructor(private router : Router, 
-              private userService : UserService, 
-              private messageService : MessageService) {
-        this.user.isSuperUser = false;
-  }
+    constructor(private router : Router, 
+                private userService : UserService, 
+                private messageService : MessageService) {
+            this.user.isSuperUser = false;
+    }
 
-  register() {
-    console.log('registrando');
+register() {
     this.loading = true;
     this.userService.create(this.user).subscribe(data => {
-      
-      console.log('register', data);
-      this.messageService .success('Registration successful', true);
-      this.router.navigate(['/login']);
-
+        this.messageService .success('Registration successful', true);
+        this.router.navigate(['/login']);
     }, error => {
         this.messageService.error(error);
         this.loading = false;
-      });
-  }
+    });
+}
 }

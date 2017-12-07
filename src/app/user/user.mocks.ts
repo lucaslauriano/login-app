@@ -1,12 +1,11 @@
 import { User } from './user.model';
 
-export const USERS: User[] = [
+export const USER: User[] = [
   { 
-    id: 1, 
-    fullname: 'Lucas Lauriano deSOuza',
-    username:'lucaslauriano',
-    password: '123456',
-    confirmPassword : '1123456',
-    isSuperUser: true
+    isSuperUser: true,
+    fullname: 'Administrador do Sistema',
+    username:'admin',
+    password: 'admin',
+    id: 1
     }
 ];

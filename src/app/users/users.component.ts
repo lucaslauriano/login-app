@@ -11,23 +11,24 @@ import {MessageService} from '../common/message/message.service';
     styleUrls: ['./users.component.css']})
     
 export class UsersComponent implements OnInit {
+
     @Input() users : Array <any>;
+
     user : any = {};
     currentUser : User;
     isSuperUser = false;
+
     constructor(private router : Router,
                 private userService : UserService, 
                 private messageService : MessageService) {
                 this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
                 this.isSuperUser = this.currentUser.isSuperUser;
-                console.log('this.isSuperUser', this.isSuperUser);
-
-}
+    }
 
     delete(id) {
         this.userService.delete(id).subscribe(data => {
-         this.messageService.success("success");
+            this.messageService.success("success");
         }, error => {
             this.messageService.error(error);
         });

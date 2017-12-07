@@ -21,3 +21,6 @@
 .logo-sidenav {
     height: 40px !important;
 }
+.mat-toolbar-row, .mat-toolbar-single-row {
+    height: 56px;
+}

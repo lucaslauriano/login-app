@@ -4,7 +4,7 @@ import {AuthService} from './auth.service';
 import decode from 'jwt-decode';
 
 @Injectable()
-export class RoleGuardService implements CanActivate {
+export class RoleGuard implements CanActivate {
 
     constructor(public auth : AuthService, public router : Router) {}
 
@@ -21,7 +21,7 @@ export class RoleGuardService implements CanActivate {
        /*  if (!this.auth.isAuthenticated() || tokenPayload.role !== expectedRole) {
             this.router.navigate(['login']);
             return false;
-        } */
+        }  */
         return true;
     }
 

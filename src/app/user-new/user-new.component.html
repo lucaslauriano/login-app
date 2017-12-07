@@ -1,6 +1,5 @@
 <div class="content">
     <mat-card>
-        
         <mat-card-title> Novo Usuário</mat-card-title>
         <mat-card-content>
             <form name="form" (ngSubmit)="newUserForm.form.valid && save()" #newUserForm="ngForm" novalidate>
@@ -16,55 +15,69 @@
                     </mat-form-field>
                     <div *ngIf="newUserForm.submitted && !fullname.valid" class="message">Nome Completo é obrigatório</div>
 
-                    <mat-form-field fxFlex [ngClass]="{ 'has-error': newUserForm.submitted && !email.valid }">
+                     <mat-form-field fxFlex [ngClass]="{ 'has-error': newUserForm.submitted && !username.valid }">
                         <input matInput 
-                               name="email"
-                               placeholder="E-mail" 
-                             [(ngModel)]="user.email"
-                              #email="ngModel"
-                              type="email"
-                              required>
-                             
-                    </mat-form-field>
-                    <div *ngIf="newUserForm.submitted && !email.valid" class="message">Email obrigatório</div>
-
-                    <mat-form-field fxFlex [ngClass]="{ 'has-error': newUserForm.submitted && !username.valid }">
-                        <input matInput 
-                               name="username"
-                               placeholder="Nome de Usuário" 
-                             [(ngModel)]="user.username"
-                              #username="ngModel"
-                               type="text"
+                            name="username"
+                            placeholder="Nome de Usuário" 
+                            [(ngModel)]="user.username"
+                            #username="ngModel"
+                            type="text"
                             required>
                     </mat-form-field>
                     <div *ngIf="newUserForm.submitted && !username.valid" class="message">Nome de Usuário é obrigatório</div>
 
-                    <mat-form-field fxFlex [ngClass]="{ 'has-error': newUserForm.submitted && !password.valid }">
-                        <input matInput 
-                               placeholder="Senha" 
-                               name="password"
-                               [type]="hide ? 'password' : 'text'"
-                               [(ngModel)]="user.password" 
-                               #password="ngModel"
-                               required>
-                        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                    <mat-form-field fxFlex class="form-group" [ngClass]="{ 'has-error': newUserForm.submitted && !password.valid }">
+                        <input matInput
+                            [type]="hide ? 'password' : 'text'"
+                            class="form-control" 
+                            placeholder="Senha"
+                            name="password" 
+                            [(ngModel)]="user.password" 
+                            #password="ngModel" 
+                            validateEqual="confirmPassword" 
+                            reverse="true"
+                            required />
+                            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
                     </mat-form-field>
-                    <div *ngIf="newUserForm.submitted && !password.valid" class="message">Senha é obrigatória</div>
+                    <div  class="message" [hidden]="password.valid || (password.pristine && !newUserForm.submitted)" class="message">
+                        Senha é obrigatória
+                    </div>
+
+                    <mat-form-field fxFlex [ngClass]="{ 'has-error': newUserForm.submitted && !confirmPassword.valid }">
+                        <input matInput 
+                                [type]="hide ? 'password' : 'text'"
+                                class="form-control" 
+                                name="confirmPassword" 
+                                placeholder="Confirmar Senha"
+                                [ngModel]="user.confirmPassword" 
+                                required 
+                                validateEqual="password"
+                                reverse="false" 
+                                #confirmPassword="ngModel">
+                            <mat-icon matSuffix (click)="hide1 = !hide1">{{hide1 ? 'visibility' : 'visibility_off'}}</mat-icon>
+                    </mat-form-field>
+                    <div [hidden]="confirmPassword.valid || (confirmPassword.pristine && !newUserForm.submitted)" 
+                            class="message">
+                        Senhas não conferem
+                    </div>
                     
                     <mat-checkbox name="isSuperUser" 
                                   #isSuperUser="ngModel" 
                                   [(indeterminate)]="user.isSuperUser"
                                   [(ngModel)]="user.isSuperUser">Administrador!</mat-checkbox>
                     
-                    <mat-divider></mat-divider>
-                    {{user.isSuperUser}}
-                    <button fxFlexAlign="center" 
+                    <mat-divider class="mat-divider"></mat-divider>
+                    <div fxFlex fxFlexAlign="end">
+                        <button fxFlexAlign="start" 
                             [disabled]="loading" 
-                            class="btn-large"
                             type="submit" 
                             mat-raised-button color="primary">SALVAR</button>
-                </div>
-            </form>
+                        <a fxFlexAlign="start" 
+                            (click)="goHome()"
+                            mat-raised-button color="asccet">CANCELAR</a>
+                        </div>
+                    </div>
+                </form>
         </mat-card-content>
     </mat-card>
 
