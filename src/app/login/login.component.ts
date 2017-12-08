@@ -25,11 +25,7 @@ constructor(private route : ActivatedRoute,
 
     ngOnInit() {
         this.authService.logout();
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/' || '' || 'home';
-
-        console.log('A',this.returnUrl);
-        console.log('A', this.route);
-        console.log('A', this.router);
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/' ;
     }
    
     login() {

@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { HttpClientModule, HttpClient} from '@angular/common/http';
+import { AuthGuard } from './common/auth/auth.guard';
+import { AdminGuard } from './common/auth/admin.guard';
 
 /* Persistencia LocalStorage */
 import {PersistenceProvider} from './common/persistence/persistence.component';
@@ -14,7 +17,6 @@ import {AppRoutingModule} from './app-routing.module';
 
 /* Service */
 import {MessageService} from './common/message/message.service';
-import {AuthGuard} from './common/auth/auth.guard';
 import {AuthService} from './common/auth/auth.service';
 import {UserService} from './users/user/user.service';
 
@@ -61,7 +63,7 @@ import { EqualValidator } from './common/validator/equal-validator.directive';
     UsersComponent,
     UserPipe
   ],
-  imports: [
+imports : [HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
@@ -84,14 +86,16 @@ import { EqualValidator } from './common/validator/equal-validator.directive';
     MatCheckboxModule
   ],
   providers : [
+    AuthService,
+    AuthGuard,
+    AdminGuard,
     PersistenceProvider,
     MockBackend, 
     BaseRequestOptions,
     MessageService,
-    AuthService,
     UserService
     
   ],
-  bootstrap: [AppComponent]
+bootstrap : [ AppComponent]
 })
 export class AppModule { }

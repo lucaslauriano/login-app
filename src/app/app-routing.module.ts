@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { AuthGuard } from './common/auth/auth.guard';
-import { RoleGuard } from './common/auth/role.guard';
+
+import { AdminGuard } from './common/auth/admin.guard';
 import { HttpClientModule} from '@angular/common/http';
 import { HttpModule} from '@angular/http';
 import { HomeComponent } from './home/home.component';
@@ -11,26 +13,29 @@ import { LoginComponent } from './login/login.component';
 import { UsersComponent } from './users/users.component';
 
 const appRoutes : Routes = [
-    { 
-        path: '', 
-        redirectTo: 'home', 
-        canActivate: [AuthGuard],
-        pathMatch: 'full'
-    }, {
-        path: 'home',
-        /* canActivate: [AuthGuard], */
-        component: HomeComponent
+
+    {
+        path: '',
+        component: HomeComponent,
+        canActivate: [AuthGuard]
     }, {
         path: 'new-user',
-       /*  canActivate: [AuthGuard], */
-        component: UserNewComponent
-    }, {
+        component: UserNewComponent,
+        canActivate: [AdminGuard]
+        },
+    {
         path: 'login',
         component: LoginComponent
     }, {
         path: 'register',
         component: RegisterComponent
-    }, {path: '**', component: HomeComponent}
+    },
+
+// otherwise redirect to home
+{
+    path: '**',
+    redirectTo: ''
+}
 ];
 
 
