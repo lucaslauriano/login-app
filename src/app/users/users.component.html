@@ -28,7 +28,7 @@
                     <p mat-line *ngIf="!user.isSuperUser">Usuário Comum</p>
                     <button *ngIf="isSuperUser"mat-icon-button 
                             color="accent"
-                            (click)="[delete(user.id)]" type="">
+                            (click)="[deleteUser(user.id)]" type="">
                         <mat-icon mat-list-icon>delete</mat-icon>
                     </button>
                 </mat-list-item>

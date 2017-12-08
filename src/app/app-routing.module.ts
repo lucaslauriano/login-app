@@ -17,13 +17,19 @@ const appRoutes : Routes = [
     {
         path: '',
         component: HomeComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
+        children: [
+            {
+                path: '',
+                component: UsersComponent,
+            },
+            {
+                path: 'new-user',
+                component: UserNewComponent,
+                canActivate: [AdminGuard]
+            }
+        ]   
     }, {
-        path: 'new-user',
-        component: UserNewComponent,
-        canActivate: [AdminGuard]
-        },
-    {
         path: 'login',
         component: LoginComponent
     }, {

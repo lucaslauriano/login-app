@@ -2,6 +2,7 @@
     width: 400px;
     height: 37px;
     top: 10px;
+    z-index: 9999;
     bottom: 10px;
     position: absolute;
     color: white;
@@ -19,7 +20,7 @@
 }
 
 .alert{
-    top: 8px;
+    bottom: 12px;
     position: absolute;
     left: 15px;
 

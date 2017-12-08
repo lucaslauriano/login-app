@@ -1,9 +1,11 @@
+<app-nav></app-nav>
 <div class="content">
     <mat-card>
         <mat-card-title> Home </mat-card-title>
         <mat-card-subtitle>Bem vindo, {{currentUser.fullname}}. </mat-card-subtitle>
         <mat-card-content> 
-            <app-users [users]="users"></app-users>
+            <!-- <app-users [users]="users"></app-users> -->
+            <router-outlet></router-outlet>
         </mat-card-content>
     </mat-card>
     <button *ngIf="isSuperUser" routerLink="/new-user" 
@@ -12,4 +14,5 @@
             <mat-icon>add</mat-icon>
     </button>
 </div>
+
  

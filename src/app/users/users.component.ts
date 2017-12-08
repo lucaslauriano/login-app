@@ -26,15 +26,32 @@ export class UsersComponent implements OnInit {
                 this.isSuperUser = this.currentUser.isSuperUser;
     }
 
-    delete(id) {
+    deleteUser(id) {
         this.userService.delete(id).subscribe(data => {
-            this.messageService.success("success");
+            this.messageService.success("Excluído com Sucesso");
         }, error => {
             this.messageService.error(error);
         });
     }
 
     ngOnInit() {
+        this.loadAllUsers();
+    }
 
+    /* deleteUser(id : number) {
+        this.userService
+            .delete(id)
+            .subscribe(() => {
+                this.loadAllUsers()
+            });
+    } */
+
+    private loadAllUsers() {
+        this
+            .userService
+            .getAll()
+            .subscribe(users => {
+                this.users = users;
+            });
     }
 }
