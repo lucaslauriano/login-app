@@ -24,31 +24,39 @@ export class AppComponent {
                 private messageService: MessageService,
                 private router: Router) {}
 
-    firstAccess(user){
-        if (!localStorage.users) {
-            this.userService.create(user).subscribe(data => {
-                this.messageService .success('Primeiro Acesso - Login: admin | Senha: admin', true);
-                }, error => {
-                this.messageService.error(error);
-            }); 
-            //Descomentar linha abaixo para limpar memoria
-            /*  localStorage.removeItem('users');  */
-        }
-    }
 
     ngOnInit() {
-        
-        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        
-        this.firstAccess(this.user);
-        console.log(this.currentUser);
-        console.log(localStorage);  
 
+        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+       
+        if (!this.currentUser) {
+            this.firstAccess(this.user, this.currentUser);
+        }
         this.authService.showMenuEmitter.subscribe(
             showMenu => this.showMenuEmitter = showMenu
-        );
+        ); 
+
+        //Descomentar linha abaixo para limpar memoria
+        //localStorage.removeItem('users'); 
         
     }
+
+    firstAccess(user, currentUser) {
+
+        this
+            .userService
+            .create(user)
+            .subscribe(data => {
+                this
+                    .messageService
+                    .success('Primeiro Acesso - Login: admin | Senha: admin', true);
+            }, error => {
+                console.log('Usuário já criado')
+            });
+
+     
+    }
+
 }
 
 
