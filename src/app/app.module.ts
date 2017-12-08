@@ -63,7 +63,8 @@ import { EqualValidator } from './common/validator/equal-validator.directive';
     UsersComponent,
     UserPipe
   ],
-imports : [HttpClientModule,
+imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
@@ -96,6 +97,6 @@ imports : [HttpClientModule,
     UserService
     
   ],
-bootstrap : [ AppComponent]
+bootstrap: [AppComponent]
 })
 export class AppModule { }

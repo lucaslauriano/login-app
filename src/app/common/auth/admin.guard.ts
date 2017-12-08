@@ -1,18 +1,16 @@
 import {Injectable} from '@angular/core';
-import {Router, CanActivate} from '@angular/router';
-import {Observable} from 'rxjs/Observable';
-import {AuthService} from './auth.service';
+import {Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
 
 @Injectable()
 export class AdminGuard implements CanActivate {
 
-    constructor(private auth : AuthService, private router : Router) {}
+    constructor(private router : Router) {}
 
-    canActivate() : Observable < boolean > | Promise < boolean > | boolean {
+    canActivate(route : ActivatedRouteSnapshot, state : RouterStateSnapshot) {
 
-        let  user = localStorage.currentUser
-         
-        if(user.isSuperUser) {
+        let  isAdmin = JSON.parse(localStorage.getItem('currentUser'));
+
+        if(isAdmin.isSuperUser) {
             return true;
         }
         this
